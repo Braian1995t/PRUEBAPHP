@@ -1,0 +1,37 @@
+Create database PRACTICA_PHP;
+
+use PRACTICA_PHP;
+
+create table DOC_DOCUMENTO (
+DOC_ID int primary key not null,
+DOC_NOMBRE varchar(60),
+DOC_CODIGO int,
+DOC_CONTENIDO varchar(4000),
+DOC_ID_TIPO int,
+DOC_ID_PROCESO int
+);
+
+create table PRO_PROCESO(
+PRO_ID INT primary KEY NOT NULL,
+PRO_PREFIJO varchar(20),
+PRO_NOMBRE VARCHAR(60)
+);
+
+CREATE TABLE TIP_TIPO_DOC(
+TIP_ID INT primary KEY NOT NULL,
+TIP_NOMBRE varchar(60),
+TIP_PREFIJO varchar(20)
+);
+
+   $table->foreign('DOC_ID_TIPO')
+                  ->references('TIP_ID')->on('tip_tipo_docs');
+
+
+            $table->foreign('DOC_ID_PROCESO')
+                  ->references('PRO_ID')->on('pro_procesos');
+
+alter table DOC_DOCUMENTO
+ADD foreign key(DOC_ID_TIPO) references TIP_TIPO_DOC(TIP_ID); 
+
+alter table DOC_DOCUMENTO
+ADD foreign key(DOC_ID_PROCESO) references PRO_PROCESO(PRO_ID); 
