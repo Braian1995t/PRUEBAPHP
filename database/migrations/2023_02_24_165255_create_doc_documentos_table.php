@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine="InnoDB";
             $table->bigIncrements('DOC_ID');
             $table->string('DOC_NOMBRE');
-            $table->integer('DOC_CODIGO');
+            $table->string('DOC_CODIGO');
             $table->string('DOC_CONTENIDO');
 
             $table->bigInteger('DOC_ID_PROCESO')->unsigned();

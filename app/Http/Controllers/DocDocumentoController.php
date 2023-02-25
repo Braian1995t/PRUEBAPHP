@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doc_documento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DocDocumentoController extends Controller
 {
@@ -12,7 +13,12 @@ class DocDocumentoController extends Controller
      */
     public function index()
     {
-        return view('doc_documento.index');
+
+        
+        $datos1['doc_documentos1']=DB::select('select DOC_ID,DOC_NOMBRE,DOC_CODIGO,DOC_CONTENIDO,DOC_ID_PROCESO,
+        DOC_ID_TIPO,PRO_PREFIJO,PRO_NOMBRE,TIP_NOMBRE,TIP_PREFIJO from doc_documentos, pro_procesos, tip_tipo_docs WHERE PRO_ID = DOC_ID_PROCESO AND
+        TIP_ID = DOC_ID_TIPO' );
+        return view('doc_documento.index',$datos1);
     }
 
     /**
@@ -31,6 +37,8 @@ class DocDocumentoController extends Controller
     public function store(Request $request)
     {
         $datosdoc_documento = request()->except('_token');
+        Doc_documento::insert( $datosdoc_documento);
+
          return response()->json($datosdoc_documento);
     }
 
