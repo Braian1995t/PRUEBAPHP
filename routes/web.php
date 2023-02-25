@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocDocumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*
 Route::get('/doc_documento', function () {
     return view('doc_documento.index');
 });
+
+Route::get('/doc_documento/create',[DocDocumentoController::class,'create']);
+*/
+
+Route::resource('doc_documento', DocDocumentoController::class);

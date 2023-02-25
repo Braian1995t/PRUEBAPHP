@@ -12,7 +12,7 @@ class DocDocumentoController extends Controller
      */
     public function index()
     {
-        //
+        return view('doc_documento.index');
     }
 
     /**
@@ -20,7 +20,9 @@ class DocDocumentoController extends Controller
      */
     public function create()
     {
-        //
+        
+            return view('doc_documento.create');
+       
     }
 
     /**
