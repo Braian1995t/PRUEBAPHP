@@ -30,7 +30,8 @@ class DocDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosdoc_documento = request()->except('_token');
+         return response()->json($datosdoc_documento);
     }
 
     /**
