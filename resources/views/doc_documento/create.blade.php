@@ -7,22 +7,31 @@ formulario de creacion de documentos
 <input type="text" name="Doc_nombre" id="Doc_nombre">
 <br>
 
-<label for="Doc_codigo">codigo documento</label>
-<input type="text" name="Doc_codigo" id="Doc_codigo">
-<br>
 
+<label for="Doc_codigo">codigo documento</label>
+
+<select name="TIP_PREFIJO">
+@foreach($doc_documentos2 as $doc_documento)
+<option name="TIP_PREFIJO" id="TIP_PREFIJO">{{$doc_documento->TIP_PREFIJO}}</option>
+@endforeach
+</select>
+
+<select name="PRO_PREFIJO">
+@foreach($doc_documentos2 as $doc_documento)
+<option name="PRO_PREFIJO" id="PRO_PREFIJO">{{$doc_documento->PRO_PREFIJO}}</option>
+@endforeach
+</select>
+
+
+
+<br>
 <label for="Doc_contenido">contenido documento</label>
 <input type="text" name="Doc_contenido" id="Doc_contenido">
-<br>
 
-<label for="Doc_id_tipo">id tipo documento</label>
-<input type="text" name="Doc_id_tipo" id="Doc_id_tipo">
-<br>
+<input id="prodId" name="PRO_ID" type="hidden" value="{{$doc_documento->PRO_ID}}">
+<input id="prodId" name="TIP_ID" type="hidden" value="{{$doc_documento->TIP_ID}}">
 
-<label for="Doc_id_proceso">id proceso documento</label>
-<input type="text" name="Doc_id_proceso" id="Doc_id_proceso">
 <br>
-
 <input type="submit" value="Guardar datos">
 
 
