@@ -90,8 +90,10 @@ class DocDocumentoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Doc_documento $doc_documento)
+    public function destroy( $DOC_ID)
     {
-        //
+         DB::delete('DELETE FROM doc_documentos where DOC_ID = ?', [ $DOC_ID]);
+       // return response()->json($DOC_ID);
+        return redirect('doc_documento');
     }
 }
