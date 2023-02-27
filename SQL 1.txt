@@ -1,0 +1,35 @@
+
+INSERT INTO `pro_procesos`(`PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ING','INGENIERIA','1','1');
+
+INSERT INTO `pro_procesos`( `PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ZOO','ZOOLOGIA','2','2');
+
+INSERT INTO `pro_procesos`(`PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ARQ','ARQUITECTURA','1','1');
+
+INSERT INTO `pro_procesos`( `PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('MED','MEDICINA','1','1');
+
+INSERT INTO `pro_procesos`(`PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ING','INGENIERIA','1','1');
+
+INSERT INTO `pro_procesos`( `PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ZOO','ZOOLOGIA','2','2');
+
+INSERT INTO `pro_procesos`(`PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ARQ','ARQUITECTURA','1','1');
+
+INSERT INTO `pro_procesos`( `PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('MED','MEDICINA','1','1');
+
+INSERT INTO `pro_procesos`( `PRO_PREFIJO`, `PRO_NOMBRE`, `created_at`, `updated_at`) VALUES ('ADM','ADMINISTRACION','1','1');
+
+
+
+INSERT INTO `tip_tipo_docs`(`TIP_NOMBRE`, `TIP_PREFIJO`, `created_at`, `updated_at`) VALUES ('INSTRUTIVO','INS','1','1');
+
+INSERT INTO `tip_tipo_docs`(`TIP_NOMBRE`, `TIP_PREFIJO`, `created_at`, `updated_at`) VALUES ('INFORME','INF','1','1');
+
+INSERT INTO `tip_tipo_docs`(`TIP_NOMBRE`, `TIP_PREFIJO`, `created_at`, `updated_at`) VALUES ('ACT','ACTA','1','1');
+
+INSERT INTO `tip_tipo_docs`(`TIP_NOMBRE`, `TIP_PREFIJO`, `created_at`, `updated_at`) VALUES ('REPORTE','REP','1','1');
+
+INSERT INTO `tip_tipo_docs`(`TIP_NOMBRE`, `TIP_PREFIJO`, `created_at`, `updated_at`) VALUES ('AFILIACION','AFI','1','1');
+
+
+
+braian1927@hotmail.com   USUARIO
+12345678   CLAVE

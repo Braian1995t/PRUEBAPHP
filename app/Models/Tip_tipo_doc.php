@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Tip_tipo_doc extends Model
 {
     use HasFactory;
+  
 }

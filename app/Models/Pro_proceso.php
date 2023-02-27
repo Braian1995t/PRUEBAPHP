@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Pro_proceso extends Model
 {
     use HasFactory;
+    
 }

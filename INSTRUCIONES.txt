@@ -1,0 +1,11 @@
+INSTRUCIONES DE LA INSTALACION DEL PROGRMA
+
+1-descargar lo archivos de gitHub
+2-revisar en .env para modificar el puerto en el que esta escuchando xampp
+3-ingresar e la herramienta de desarrollo y ingresar en la terminal Y dirigete a la capeta
+que esta el programa para subir las migraciones (realiza el siguiente codigo)
+PHP ARTISAN MIGRATE
+4-subir los sql para agregar respectivamente los Tip-tio_doc y los pro_procesos en su MYSQL 
+5-http://localhost/PruebaPhp/public/login     link de login 
+6-registrate para poder ingresar
+
