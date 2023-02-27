@@ -1,5 +1,5 @@
 mostar lista documentos
-
+<a href="{{url('/doc_documento/create')}}">Nuevo Registro</a>
 <table class="table table-light">
     <thead class="thead-light">
     <tr>
@@ -19,7 +19,14 @@ mostar lista documentos
             <td>({{$doc_documento->PRO_PREFIJO}})  {{$doc_documento->PRO_NOMBRE}}</td>
             <td>({{$doc_documento->TIP_PREFIJO}})  {{$doc_documento->TIP_NOMBRE}}</td>
             <td>{{$doc_documento->DOC_CODIGO}}</td>
-            <td>Editar | 
+            <td>
+                
+            <a href="{{url('/doc_documento/'.$doc_documento->DOC_ID.'/edit')}}">
+                Editar</a>
+
+                
+             
+            | 
                 
           <form action="{{url('/doc_documento/'.$doc_documento->DOC_ID)}}" method="post">
           @csrf

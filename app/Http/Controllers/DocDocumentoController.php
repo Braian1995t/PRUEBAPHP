@@ -32,7 +32,9 @@ class DocDocumentoController extends Controller
        $datos2['doc_documentos2']=DB::select('select PRO_ID,PRO_PREFIJO,TIP_ID,TIP_PREFIJO from  
        pro_procesos, tip_tipo_docs');
         
+       
             return view('doc_documento.create',$datos2);
+            
        
     }
 
@@ -42,12 +44,6 @@ class DocDocumentoController extends Controller
     public function store(Request $request)
     {
         $datosdoc_documento = request()->except('_token');
-       // Doc_documento::insert( $datosdoc_documento);
-  //  $ID_tipo=DB::select('select TIP_ID from tip_tipo_docs where active = ?', [1])
-   // $ID_proceso=DB::select('select PRO_ID from pro_procesos where PRO_PREFIJO = ?', [$datosdoc_documento->PRO_PREFIJO]);
-
-  //  DB::insert('insert into doc_documentos (DOC_NOMBRE, DOC_CODIGO,DOC_CONTENIDO,DOC_ID_PROCESO,DOC_ID_TIPO)
-    // values (?, ?, ?, ?, ?)', ['Dayle'.'-'.'Dayle', 'Dayle','Dayle',1,1]);
 
           $nombre_Doc = $datosdoc_documento['Doc_nombre'];
           $TIP_PREFIJO = $datosdoc_documento['TIP_PREFIJO'];
@@ -55,12 +51,15 @@ class DocDocumentoController extends Controller
           $Doc_contenido = $datosdoc_documento['Doc_contenido'];
           $PRO_ID = $datosdoc_documento['PRO_ID'];
           $TIP_ID = $datosdoc_documento['TIP_ID'];
-          $nuevoValor=DB::select(' SELECT MAX(CAST(RIGHT(DOC_CODIGO, 1) AS INT)) + 1 AS nuevo_valor FROM doc_documentos');
-          $nuevoValor1=$nuevoValor[0]->nuevo_valor;
+          
+          $nuevo= DB::select(' SELECT MAX(CAST(REGEXP_REPLACE(DOC_CODIGO,"[^0-9]+", "") AS INT)) + 1 AS siguiente_numero FROM doc_documentos');
+         
+          $nuevoValor1=$nuevo[0]->siguiente_numero;
           
           DB::insert('insert into doc_documentos (DOC_NOMBRE, DOC_CODIGO, DOC_CONTENIDO,DOC_ID_PROCESO,DOC_ID_TIPO) 
           values (?, ?, ?, ?, ?)', [$nombre_Doc, $TIP_PREFIJO.'-'.$PRO_PREFIJO.'-'.$nuevoValor1,$Doc_contenido,$PRO_ID,$TIP_ID]);
-         return response()->json($TIP_ID);
+        // return response()->json( $nuevoValor1);
+        return redirect('doc_documento');
     }
 
     /**
@@ -74,17 +73,48 @@ class DocDocumentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Doc_documento $doc_documento)
+    public function edit($DOC_ID)
     {
-        //
+        
+        $datos2['doc_documentos2']=DB::select('select PRO_ID,PRO_PREFIJO,TIP_ID,TIP_PREFIJO from  
+       pro_procesos, tip_tipo_docs');
+
+        $editDoc['doc_documentos3']=DB::select('select * from doc_documentos  
+        where DOC_ID = (?)', [$DOC_ID]);
+
+        $nuevoDoc=Doc_documento::findOrFail($DOC_ID);
+      // return response()->json($nuevoDoc);
+       return view('doc_documento.edit',$datos2,compact('nuevoDoc'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Doc_documento $doc_documento)
+    public function update(Request $request,$DOC_ID)
     {
-        //
+        $datosdoc_documento = request()->except(['_token','_method']);
+          $nombre_Doc = $datosdoc_documento['Doc_nombre'];
+          $TIP_PREFIJO = $datosdoc_documento['TIP_PREFIJO'];
+          $PRO_PREFIJO = $datosdoc_documento['PRO_PREFIJO'];
+          $Doc_contenido = $datosdoc_documento['Doc_contenido'];
+          $PRO_ID = $datosdoc_documento['PRO_ID'];
+          $TIP_ID = $datosdoc_documento['TIP_ID'];
+
+          $nuevo= DB::select(' SELECT MAX(CAST(REGEXP_REPLACE(DOC_CODIGO,"[^0-9]+", "") AS INT)) + 1 AS siguiente_numero FROM doc_documentos');
+          $nuevoValor1=$nuevo[0]->siguiente_numero;
+
+          
+        DB::update('update doc_documentos set 
+        DOC_NOMBRE ='.'"'.$nombre_Doc.'"'.'
+        ,Doc_codigo ='.'"'.$TIP_PREFIJO.'-'.$PRO_PREFIJO.'-'.$nuevoValor1.'"'.'
+        ,Doc_contenido ='.'"'.$Doc_contenido.'"'.' 
+        ,DOC_ID_PROCESO ='.'"'.$PRO_ID.'"'.' 
+        ,DOC_ID_TIPO ='.'"'.$TIP_ID.'"'.' 
+        where DOC_ID = ?', [$DOC_ID]);
+          
+        //return response()->json($nuevoValor1);
+
+        return redirect('doc_documento');
     }
 
     /**

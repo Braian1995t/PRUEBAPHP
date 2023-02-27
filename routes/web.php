@@ -26,3 +26,6 @@ Route::get('/doc_documento/create',[DocDocumentoController::class,'create']);
 */
 
 Route::resource('doc_documento', DocDocumentoController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,7 +9,6 @@ formulario de creacion de documentos
 
 
 <label for="Doc_codigo">codigo documento</label>
-
 <select name="TIP_PREFIJO">
 @foreach($doc_documentos2 as $doc_documento)
 <option name="TIP_PREFIJO" id="TIP_PREFIJO">{{$doc_documento->TIP_PREFIJO}}</option>
@@ -34,6 +33,6 @@ formulario de creacion de documentos
 <br>
 <input type="submit" value="Guardar datos">
 
-
+<a href="{{url('/doc_documento/')}}">Regresar</a>
 
 </form>
