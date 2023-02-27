@@ -15,7 +15,7 @@ use App\Http\Controllers\DocDocumentoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 /*
 Route::get('/doc_documento', function () {
@@ -25,7 +25,13 @@ Route::get('/doc_documento', function () {
 Route::get('/doc_documento/create',[DocDocumentoController::class,'create']);
 */
 
-Route::resource('doc_documento', DocDocumentoController::class);
-Auth::routes();
+Route::resource('doc_documento', DocDocumentoController::class)->middleware('auth');
+Auth::routes(['reset'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [DocDocumentoController::class, 'index'])->name('home');
+
+Route::group(['middleware' =>'auth'],function () {
+
+    Route::get('/', [DocDocumentoController::class, 'index'])->name('home');
+
+});

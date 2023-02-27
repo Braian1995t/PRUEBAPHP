@@ -1,4 +1,8 @@
-mostar lista documentos
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
+
 <a href="{{url('/doc_documento/create')}}">Nuevo Registro</a>
 <table class="table table-light">
     <thead class="thead-light">
@@ -24,8 +28,7 @@ mostar lista documentos
             <a href="{{url('/doc_documento/'.$doc_documento->DOC_ID.'/edit')}}">
                 Editar</a>
 
-                
-             
+            
             | 
                 
           <form action="{{url('/doc_documento/'.$doc_documento->DOC_ID)}}" method="post">
@@ -43,3 +46,5 @@ mostar lista documentos
         </tr>
     </tbody>
 </table>
+</div>
+@endsection

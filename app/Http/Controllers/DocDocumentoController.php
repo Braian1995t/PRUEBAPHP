@@ -43,6 +43,8 @@ class DocDocumentoController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $datosdoc_documento = request()->except('_token');
 
           $nombre_Doc = $datosdoc_documento['Doc_nombre'];
@@ -52,14 +54,15 @@ class DocDocumentoController extends Controller
           $PRO_ID = $datosdoc_documento['PRO_ID'];
           $TIP_ID = $datosdoc_documento['TIP_ID'];
           
-          $nuevo= DB::select(' SELECT MAX(CAST(REGEXP_REPLACE(DOC_CODIGO,"[^0-9]+", "") AS INT)) + 1 AS siguiente_numero FROM doc_documentos');
-         
+          $nuevo= DB::select(' SELECT COALESCE(MAX(CAST(REGEXP_REPLACE(DOC_CODIGO,"[^0-9]+", "") AS INT)) + 1, 1) AS siguiente_numero FROM doc_documentos');
           $nuevoValor1=$nuevo[0]->siguiente_numero;
+
+          $union
           
           DB::insert('insert into doc_documentos (DOC_NOMBRE, DOC_CODIGO, DOC_CONTENIDO,DOC_ID_PROCESO,DOC_ID_TIPO) 
           values (?, ?, ?, ?, ?)', [$nombre_Doc, $TIP_PREFIJO.'-'.$PRO_PREFIJO.'-'.$nuevoValor1,$Doc_contenido,$PRO_ID,$TIP_ID]);
         // return response()->json( $nuevoValor1);
-        return redirect('doc_documento');
+        return redirect('doc_documento')->with('mensaje','Documento agregado con exito');
     }
 
     /**
@@ -127,3 +130,5 @@ class DocDocumentoController extends Controller
         return redirect('doc_documento');
     }
 }
+
+

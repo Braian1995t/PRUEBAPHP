@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
 <form action="{{url('/doc_documento/'.$nuevoDoc->DOC_ID)}}" method="post">
 @csrf
  {{method_field('PATCH')}}
@@ -37,3 +41,6 @@ Cambiar A
 <input type="submit" value="Guardar datos">
 <a href="{{url('/doc_documento/')}}">Regresar</a>
 </form>
+
+</div>
+@endsection
