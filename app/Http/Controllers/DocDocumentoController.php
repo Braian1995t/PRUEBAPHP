@@ -56,8 +56,7 @@ class DocDocumentoController extends Controller
           
           $nuevo= DB::select(' SELECT COALESCE(MAX(CAST(REGEXP_REPLACE(DOC_CODIGO,"[^0-9]+", "") AS INT)) + 1, 1) AS siguiente_numero FROM doc_documentos');
           $nuevoValor1=$nuevo[0]->siguiente_numero;
-
-          $union
+          
           
           DB::insert('insert into doc_documentos (DOC_NOMBRE, DOC_CODIGO, DOC_CONTENIDO,DOC_ID_PROCESO,DOC_ID_TIPO) 
           values (?, ?, ?, ?, ?)', [$nombre_Doc, $TIP_PREFIJO.'-'.$PRO_PREFIJO.'-'.$nuevoValor1,$Doc_contenido,$PRO_ID,$TIP_ID]);
