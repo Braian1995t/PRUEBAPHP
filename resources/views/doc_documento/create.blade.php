@@ -31,8 +31,8 @@
 <label for="Doc_contenido">contenido documento</label>
 <input type="text" name="Doc_contenido" id="Doc_contenido" required>
 
-<input id="prodId" name="PRO_ID" type="hidden" value="{{$doc_documento->PRO_ID}}">
-<input id="prodId" name="TIP_ID" type="hidden" value="{{$doc_documento->TIP_ID}}">
+<input id="prodId" name="PRO_ID" type="hidden" value="<?php echo !empty($doc_documento->PRO_ID) ? $doc_documento->PRO_ID : ''; ?>">
+<input id="tip_id" name="TIP_ID" type="hidden" value="<?php echo !empty($doc_documento->TIP_ID) ? $doc_documento->TIP_ID : ''; ?>">
 
 <br>
 <input type="submit" value="Guardar datos">
